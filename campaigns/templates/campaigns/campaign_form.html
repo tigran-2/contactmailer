@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Create Campaign</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+    <p><em>Use {name}, {email}, {company}, {tags} in the body text as placeholders.</em></p>
+    
+    <button type="submit" class="btn">Save Campaign</button>
+</form>
+
+<br>
+<a href="{% url 'campaigns:campaign_list' %}">Back to Campaigns</a>
+{% endblock %}

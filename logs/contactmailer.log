@@ -1,0 +1,33 @@
+INFO 2026-03-12 06:23:18,638 autoreload Watching for file changes with StatReloader
+WARNING 2026-03-12 06:23:34,442 log Not Found: /
+WARNING 2026-03-12 06:23:34,443 basehttp "GET / HTTP/1.1" 404 2469
+INFO 2026-03-12 06:23:45,761 basehttp "GET /admin HTTP/1.1" 301 0
+INFO 2026-03-12 06:23:45,784 basehttp "GET /admin/ HTTP/1.1" 302 0
+INFO 2026-03-12 06:23:45,831 basehttp "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4173
+INFO 2026-03-12 06:23:50,623 basehttp "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4173
+INFO 2026-03-12 06:23:50,694 basehttp "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+INFO 2026-03-12 06:23:50,694 basehttp "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+INFO 2026-03-12 06:23:50,695 basehttp "GET /static/admin/css/base.css HTTP/1.1" 200 22120
+INFO 2026-03-12 06:23:50,695 basehttp "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+INFO 2026-03-12 06:23:50,696 basehttp "GET /static/admin/css/responsive.css HTTP/1.1" 200 16565
+INFO 2026-03-12 06:23:50,697 basehttp "GET /static/admin/css/login.css HTTP/1.1" 200 951
+INFO 2026-03-12 06:23:50,710 basehttp "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+WARNING 2026-03-12 06:23:50,809 log Not Found: /favicon.ico
+WARNING 2026-03-12 06:23:50,810 basehttp "GET /favicon.ico HTTP/1.1" 404 2520
+INFO 2026-03-12 06:23:57,111 basehttp "GET /contacts HTTP/1.1" 301 0
+INFO 2026-03-12 06:23:57,129 decorators Function 'contact_list' executed in 0.0089 seconds.
+INFO 2026-03-12 06:23:57,130 basehttp "GET /contacts/ HTTP/1.1" 200 1863
+INFO 2026-03-12 06:24:01,534 decorators Function 'contact_list' executed in 0.0026 seconds.
+INFO 2026-03-12 06:24:01,535 basehttp "GET /contacts/ HTTP/1.1" 200 1863
+INFO 2026-03-12 06:24:02,343 decorators Function 'campaign_list' executed in 0.0039 seconds.
+INFO 2026-03-12 06:24:02,344 basehttp "GET /campaigns/ HTTP/1.1" 200 1440
+INFO 2026-03-12 06:24:04,147 basehttp "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4173
+INFO 2026-03-12 06:24:11,536 basehttp "GET /campaigns HTTP/1.1" 301 0
+INFO 2026-03-12 06:24:11,547 decorators Function 'campaign_list' executed in 0.0033 seconds.
+INFO 2026-03-12 06:24:11,548 basehttp "GET /campaigns/ HTTP/1.1" 200 1440
+INFO 2026-03-12 06:24:13,917 decorators Function 'campaign_create' executed in 0.0063 seconds.
+INFO 2026-03-12 06:24:13,918 basehttp "GET /campaigns/create/ HTTP/1.1" 200 2013
+INFO 2026-03-12 06:24:41,756 autoreload /home/leprush/PRACTICE/contactmailer/contactmailer/settings.py changed, reloading.
+INFO 2026-03-12 06:24:42,195 autoreload Watching for file changes with StatReloader
+INFO 2026-03-12 06:25:01,598 autoreload /home/leprush/PRACTICE/contactmailer/common/progress_socket.py changed, reloading.
+INFO 2026-03-12 06:25:02,010 autoreload Watching for file changes with StatReloader
