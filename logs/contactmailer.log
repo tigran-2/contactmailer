@@ -31,3 +31,22 @@ INFO 2026-03-12 06:24:41,756 autoreload /home/leprush/PRACTICE/contactmailer/con
 INFO 2026-03-12 06:24:42,195 autoreload Watching for file changes with StatReloader
 INFO 2026-03-12 06:25:01,598 autoreload /home/leprush/PRACTICE/contactmailer/common/progress_socket.py changed, reloading.
 INFO 2026-03-12 06:25:02,010 autoreload Watching for file changes with StatReloader
+INFO 2026-03-14 10:03:41,753 autoreload Watching for file changes with StatReloader
+INFO 2026-03-14 10:04:06,227 autoreload Watching for file changes with StatReloader
+INFO 2026-03-14 10:04:25,006 decorators Function 'contact_list' executed in 0.0273 seconds.
+INFO 2026-03-14 10:04:25,007 basehttp "GET /contacts/ HTTP/1.1" 200 1863
+WARNING 2026-03-14 10:04:25,416 log Not Found: /favicon.ico
+WARNING 2026-03-14 10:04:25,416 basehttp "GET /favicon.ico HTTP/1.1" 404 2520
+WARNING 2026-03-14 10:04:31,463 log Not Found: /
+WARNING 2026-03-14 10:04:31,464 basehttp "GET / HTTP/1.1" 404 2469
+INFO 2026-03-14 10:04:39,354 basehttp "GET /admin HTTP/1.1" 301 0
+INFO 2026-03-14 10:04:39,382 basehttp "GET /admin/ HTTP/1.1" 302 0
+INFO 2026-03-14 10:04:39,436 basehttp "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4173
+INFO 2026-03-14 10:04:39,600 basehttp "GET /static/admin/css/login.css HTTP/1.1" 200 951
+INFO 2026-03-14 10:04:39,601 basehttp "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+INFO 2026-03-14 10:04:39,601 basehttp "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+INFO 2026-03-14 10:04:39,602 basehttp "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+INFO 2026-03-14 10:04:39,602 basehttp "GET /static/admin/css/responsive.css HTTP/1.1" 200 16565
+INFO 2026-03-14 10:04:39,605 basehttp "GET /static/admin/css/base.css HTTP/1.1" 200 22120
+INFO 2026-03-14 10:04:39,638 basehttp "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2026-03-14 10:04:42,677 basehttp "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4341
