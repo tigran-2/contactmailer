@@ -50,3 +50,69 @@ INFO 2026-03-14 10:04:39,602 basehttp "GET /static/admin/css/responsive.css HTTP
 INFO 2026-03-14 10:04:39,605 basehttp "GET /static/admin/css/base.css HTTP/1.1" 200 22120
 INFO 2026-03-14 10:04:39,638 basehttp "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
 INFO 2026-03-14 10:04:42,677 basehttp "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4341
+INFO 2026-03-17 11:16:00,830 autoreload Watching for file changes with StatReloader
+WARNING 2026-03-17 11:16:51,715 log Not Found: /
+WARNING 2026-03-17 11:16:51,716 log "GET / HTTP/1.1" 404 2469
+WARNING 2026-03-17 11:16:52,496 log Not Found: /favicon.ico
+WARNING 2026-03-17 11:16:52,497 log "GET /favicon.ico HTTP/1.1" 404 2520
+INFO 2026-03-17 11:17:03,721 log "GET /contacts HTTP/1.1" 301 0
+INFO 2026-03-17 11:17:03,768 decorators Function 'contact_list' executed in 0.0317 seconds.
+INFO 2026-03-17 11:17:03,769 log "GET /contacts/ HTTP/1.1" 200 1863
+INFO 2026-03-17 11:17:13,677 decorators Function 'campaign_list' executed in 0.0052 seconds.
+INFO 2026-03-17 11:17:13,678 log "GET /campaigns/ HTTP/1.1" 200 1440
+INFO 2026-03-17 11:17:15,203 decorators Function 'campaign_create' executed in 0.0165 seconds.
+INFO 2026-03-17 11:17:15,204 log "GET /campaigns/create/ HTTP/1.1" 200 2013
+INFO 2026-03-17 11:39:32,516 log "GET /admin/ HTTP/1.1" 302 0
+INFO 2026-03-17 11:39:32,582 log "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4080
+INFO 2026-03-17 11:39:32,755 log "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 3538
+INFO 2026-03-17 11:39:32,757 log "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+INFO 2026-03-17 11:39:32,758 log "GET /static/admin/css/base.css HTTP/1.1" 200 23100
+INFO 2026-03-17 11:39:32,758 log "GET /static/admin/css/responsive.css HTTP/1.1" 200 16273
+INFO 2026-03-17 11:39:32,759 log "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+INFO 2026-03-17 11:39:32,758 log "GET /static/admin/css/login.css HTTP/1.1" 200 951
+INFO 2026-03-17 11:39:32,949 log "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2026-03-17 11:39:35,789 log "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2026-03-17 11:39:35,827 log "GET /admin/ HTTP/1.1" 200 6021
+INFO 2026-03-17 11:39:35,964 log "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2026-03-17 11:39:36,052 log "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 593
+INFO 2026-03-17 11:39:36,055 log "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 978
+INFO 2026-03-17 11:39:53,294 log "GET /admin/auth/user/ HTTP/1.1" 200 11635
+INFO 2026-03-17 11:39:53,431 log "GET /static/admin/css/changelists.css HTTP/1.1" 200 7498
+INFO 2026-03-17 11:39:53,434 log "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+INFO 2026-03-17 11:39:53,435 log "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO 2026-03-17 11:39:53,437 log "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+INFO 2026-03-17 11:39:53,442 log "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-17 11:39:53,443 log "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+INFO 2026-03-17 11:39:53,471 log "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO 2026-03-17 11:39:53,473 log "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2026-03-17 11:39:53,475 log "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+INFO 2026-03-17 11:39:53,478 log "GET /static/admin/img/search.svg HTTP/1.1" 200 607
+INFO 2026-03-17 11:39:53,480 log "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 558
+INFO 2026-03-17 11:39:53,482 log "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+INFO 2026-03-17 11:39:53,576 log "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+INFO 2026-03-17 11:39:53,605 log "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 593
+INFO 2026-03-17 11:39:53,606 log "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 928
+INFO 2026-03-17 11:39:53,609 log "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1761
+INFO 2026-03-17 11:39:58,326 log "GET /admin/ HTTP/1.1" 200 6021
+INFO 2026-03-17 11:40:00,469 log "GET /admin/auth/group/ HTTP/1.1" 200 8011
+INFO 2026-03-17 11:40:00,581 log "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-17 11:40:02,529 log "GET /admin/auth/group/add/ HTTP/1.1" 200 11970
+INFO 2026-03-17 11:40:02,666 log "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+INFO 2026-03-17 11:40:02,667 log "GET /static/admin/css/forms.css HTTP/1.1" 200 8831
+INFO 2026-03-17 11:40:02,668 log "GET /static/admin/js/SelectFilter2.js HTTP/1.1" 200 16428
+INFO 2026-03-17 11:40:02,671 log "GET /static/admin/js/SelectBox.js HTTP/1.1" 200 4530
+INFO 2026-03-17 11:40:02,672 log "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-17 11:40:02,732 log "GET /static/admin/css/widgets.css HTTP/1.1" 200 11811
+INFO 2026-03-17 11:40:02,751 log "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO 2026-03-17 11:40:02,927 log "GET /static/admin/img/selector-icons.svg HTTP/1.1" 200 2387
+INFO 2026-03-17 11:40:11,448 decorators Function 'campaign_create' executed in 0.0041 seconds.
+INFO 2026-03-17 11:40:11,449 log "GET /campaigns/create/ HTTP/1.1" 200 2013
+INFO 2026-03-17 11:45:32,058 autoreload /home/leprush/PRACTICE/contactmailer/contactmailer/settings.py changed, reloading.
+INFO 2026-03-17 11:45:33,217 autoreload Watching for file changes with StatReloader
+INFO 2026-03-17 13:42:05,573 autoreload Watching for file changes with StatReloader
+INFO 2026-03-17 14:03:49,671 decorators Function 'contact_list' executed in 0.0360 seconds.
+INFO 2026-03-17 14:03:49,674 log "GET /contacts/ HTTP/1.1" 200 2269
+WARNING 2026-03-17 14:03:49,837 log Not Found: /favicon.ico
+WARNING 2026-03-17 14:03:49,840 log "GET /favicon.ico HTTP/1.1" 404 2520
+INFO 2026-03-17 14:04:02,630 decorators Function 'contact_list' executed in 0.0056 seconds.
+INFO 2026-03-17 14:04:02,631 log "GET /contacts/ HTTP/1.1" 200 2269

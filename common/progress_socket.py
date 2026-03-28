@@ -1,3 +1,4 @@
+import os
 import socket
 import json
 import threading
@@ -6,8 +7,8 @@ from typing import Dict, Any
 
 logger = logging.getLogger('contactmailer')
 
-HOST = '127.0.0.1'
-PORT = 65432
+HOST = os.environ.get('PROGRESS_HOST', '0.0.0.0')
+PORT = int(os.environ.get('PROGRESS_PORT', 65432))
 
 class ProgressServer:
     def __init__(self, host=HOST, port=PORT):

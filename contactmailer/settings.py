@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'contacts',
     'campaigns',
+    'common',
 ]
 
 MIDDLEWARE = [

@@ -26,7 +26,11 @@ You can easily spin up the entire stack (Django, Progress Server, Mailpit for te
 2. **Access the application:**
    - Django App: `http://localhost:8000/contacts/`
    - Mailpit Web UI: `http://localhost:8025/`
-3. **View live socket progress:**
+3. **Seed initial data (Superuser & Samples):**
+   ```bash
+   docker compose exec django python manage.py seed_data
+   ```
+4. **View live socket progress:**
    ```bash
    docker compose exec progress_server python -m common.progress_socket client
    ```
@@ -68,11 +72,28 @@ You can easily spin up the entire stack (Django, Progress Server, Mailpit for te
     python manage.py runserver
     ```
 
+### Testing & Development Tools
+
+To make testing easier, several tools are provided:
+
+1. **Seed Data**: Populate the database with a superuser (`admin`/`admin`), sample contacts, and campaigns.
+   ```bash
+   python manage.py seed_data
+   ```
+2. **Sample CSVs**: Located in the `samples/` directory:
+   - `contacts_minimal.csv`: Name and Email only.
+   - `contacts_full.csv`: All fields with custom headers (tests mapping).
+   - `contacts_bulk.csv`: 100 contacts for testing pagination and socket progress.
+
 ## Usage
 1. Go to `http://127.0.0.1:8000/contacts/`
-2. **Import CSV**: Use `sample_contacts.csv` to map columns.
-3. **Progress client**: To view streaming progress during a large send, run:
+2. **Import CSV**: Use files from the `samples/` directory (e.g., `contacts_full.csv`).
+3. **Map Columns**: If using `contacts_full.csv`, map the columns: 
+   - `Full Name` -> Name
+   - `Email Address` -> Email
+   - `Company Name` -> Company
+4. **Progress client**: To view streaming progress during a large send (like `contacts_bulk.csv`), run:
    ```bash
    python -m common.progress_socket client
    ```
-4. **Trigger Campaign**: Go to campaigns, create a campaign, and click Send.
+5. **Trigger Campaign**: Create a campaign, choose a target tag (or leave blank), and click **Send**.

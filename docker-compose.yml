@@ -1,0 +1,34 @@
+services:
+  django:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - EMAIL_HOST=mailpit
+      - EMAIL_PORT=1025
+      - PROGRESS_HOST=progress_server
+      - PROGRESS_PORT=65432
+    depends_on:
+      - progress_server
+      - mailpit
+
+  progress_server:
+    build: .
+    command: ["python", "-m", "common.progress_socket"]
+    ports:
+      - "65432:65432"
+    volumes:
+      - .:/app
+    environment:
+      - PROGRESS_HOST=0.0.0.0
+      - PROGRESS_PORT=65432
+
+  mailpit:
+    image: axllent/mailpit
+    ports:
+      - "8025:8025"
+      - "1025:1025"
+    environment:
+      - MP_MAX_MESSAGES=5000
