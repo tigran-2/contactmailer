@@ -25,7 +25,7 @@ def parse_csv(file_content: str, column_mapping: Dict[str, str]) -> List[Dict[st
 
     # create a reversed map: CSV column name -> Model field name
     # example mapping input: {'Name': 'Contact Name', 'Email': 'Email Address', ...}
-    reverse_map = {csv_col: model_field for model_field, csv_col in column_mapping.items()}
+    reverse_map = column_mapping
     
     # Identify the index for each model field based on header
     index_map = {}

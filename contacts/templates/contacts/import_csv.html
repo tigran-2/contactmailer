@@ -1,14 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Import Contacts CSV</h2>
-
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn">Upload & Import</button>
-</form>
-
-<br>
-<a href="{% url 'contacts:contact_list' %}">Back to Contacts</a>
+<div style="max-width: 500px; margin: 0 auto;">
+    <h2>Import Contacts CSV</h2>
+    <p style="color: var(--text-secondary); margin-bottom: 2rem;">Upload a CSV file to bulk add or update contacts. The file should include Name, Email, Company, and Tags columns.</p>
+    
+    <form method="POST" enctype="multipart/form-data" style="background: rgba(15, 23, 42, 0.4); padding: 2rem; border-radius: 12px; border: 1px solid var(--surface-border); text-align: center;">
+        {% csrf_token %}
+        
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-primary); margin-bottom: 1rem;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+        
+        <div style="margin-bottom: 2rem; text-align: left;">
+            {{ form.as_p }}
+        </div>
+        
+        <div style="display: flex; gap: 1rem; justify-content: center;">
+            <a href="{% url 'contacts:contact_list' %}" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary">Upload & Import</button>
+        </div>
+    </form>
+</div>
 {% endblock %}

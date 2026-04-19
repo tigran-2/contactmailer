@@ -26,7 +26,7 @@ services:
       - PROGRESS_PORT=65432
 
   mailpit:
-    image: axllent/mailpit
+    image: docker.io/axllent/mailpit
     ports:
       - "8025:8025"
       - "1025:1025"

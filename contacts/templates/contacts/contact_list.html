@@ -1,57 +1,76 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Contacts</h2>
-
-<div style="margin-bottom: 15px;">
-    <form method="GET" style="display:inline-block;">
-        <input type="text" name="q" placeholder="Search by name or email" value="{{ query }}">
-        <button type="submit">Search</button>
-    </form>
-    <a href="{% url 'contacts:import_csv' %}" class="btn" style="margin-left: 20px;">Import CSV</a>
-    <a href="{% url 'contacts:export_csv' %}" class="btn">Export CSV</a>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+    <h2>Contacts Directory</h2>
+    <div style="display: flex; gap: 1rem;">
+        <a href="{% url 'contacts:import_csv' %}" class="btn btn-secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+            Import CSV
+        </a>
+        <a href="{% url 'contacts:export_csv' %}" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Export CSV
+        </a>
+    </div>
 </div>
 
-<table>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Company</th>
-            <th>Tags</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for contact in page_obj %}
-        <tr>
-            <td>{{ contact.name }}</td>
-            <td>{{ contact.email }}</td>
-            <td>{{ contact.company }}</td>
-            <td>{{ contact.tags }}</td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="4">No contacts found.</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<div class="flex-row">
+    <form method="GET" style="display:flex; width: 100%; max-width: 500px; gap: 10px;">
+        <input type="text" name="q" placeholder="Search by name, email or tag..." value="{{ query }}" style="margin: 0;">
+        <button type="submit" class="btn btn-primary" style="padding: 0.75rem 1.5rem;">Search</button>
+    </form>
+</div>
 
-<div style="margin-top: 15px;">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page=1{% if query %}&q={{ query }}{% endif %}">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}{% if query %}&q={{ query }}{% endif %}">previous</a>
-        {% endif %}
+<div style="overflow-x: auto;">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Company</th>
+                <th>Tags</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contact in page_obj %}
+            <tr>
+                <td style="font-weight: 500;">{{ contact.name }}</td>
+                <td style="color: var(--accent-primary);">{{ contact.email }}</td>
+                <td>{{ contact.company|default:"-" }}</td>
+                <td>
+                    {% if contact.tags %}
+                        <span class="badge badge-processing">{{ contact.tags }}</span>
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1rem; opacity: 0.5;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    <p>No contacts found matching your criteria.</p>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
+<div class="pagination">
+    {% if page_obj.has_previous %}
+        <a href="?page=1{% if query %}&q={{ query }}{% endif %}">&laquo; First</a>
+        <a href="?page={{ page_obj.previous_page_number }}{% if query %}&q={{ query }}{% endif %}">Prev</a>
+    {% endif %}
 
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}{% if query %}&q={{ query }}{% endif %}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}{% if query %}&q={{ query }}{% endif %}">last &raquo;</a>
-        {% endif %}
+    <span class="current">
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
     </span>
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}{% if query %}&q={{ query }}{% endif %}">Next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}{% if query %}&q={{ query }}{% endif %}">Last &raquo;</a>
+    {% endif %}
 </div>
 {% endblock %}

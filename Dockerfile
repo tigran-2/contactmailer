@@ -1,8 +1,10 @@
-FROM python:3.12-slim
+FROM docker.io/library/python:3.12-slim
 
 # Install system utilities needed and uv
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
+    iputils-ping \
+    dnsutils \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
