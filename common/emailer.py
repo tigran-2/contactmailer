@@ -1,3 +1,4 @@
+import threading
 from concurrent.futures import ThreadPoolExecutor
 import smtplib
 from email.mime.text import MIMEText
@@ -42,11 +43,10 @@ def send_single_email(recipient: str, subject: str, template: str, context: dict
         return False
 
 @log_time
-def send_bulk_emails(campaign_id: str, subject: str, body_template: str, recipients: list):
+def send_bulk_emails(campaign_id: str, subject: str, body_template: str, recipients: list, campaign_obj=None):
     """
     Sends emails concurrently using ThreadPoolExecutor.
-    Updates the local progress socket server.
-    recipients is a list of dictionaries, e.g. [{"email": "x@x.com", "name": "X"}]
+    Updates the external progress socket server.
     """
     total = len(recipients)
     sent = 0
@@ -69,3 +69,21 @@ def send_bulk_emails(campaign_id: str, subject: str, body_template: str, recipie
         futures = [executor.submit(process_recipient, r) for r in recipients]
         
     logger.info(f"Campaign {campaign_id} finished. Sent: {sent}, Failed: {failed}, Total: {total}")
+    
+    if campaign_obj:
+        campaign_obj.status = "sent"
+        campaign_obj.save()
+
+def start_bulk_emails_in_background(campaign_obj, recipients: list):
+    """
+    Starts the bulk email sending in a background thread.
+    """
+    campaign_obj.status = "processing"
+    campaign_obj.save()
+    
+    thread = threading.Thread(
+        target=send_bulk_emails, 
+        args=(str(campaign_obj.id), campaign_obj.subject, campaign_obj.body_text, recipients, campaign_obj),
+        daemon=True
+    )
+    thread.start()

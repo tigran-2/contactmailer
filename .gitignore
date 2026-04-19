@@ -16,3 +16,4 @@ wheels/
 *.pyc
 *.log
 logs/contactmailer.log
+logs/contactmailer.log

@@ -41,15 +41,32 @@
                     {% endif %}
                 </td>
                 <td style="color: var(--text-secondary);">{{ campaign.created_at|date:"M d, Y H:i" }}</td>
-                <td style="text-align: right;">
+                <td style="text-align: right; min-width: 200px;">
                     {% if campaign.status != 'sent' and campaign.status != 'processing' %}
-                    <form method="POST" action="{% url 'campaigns:campaign_trigger' campaign.id %}" style="display:inline;">
+                    <form method="POST" action="{% url 'campaigns:campaign_trigger' campaign.id %}" style="display:inline;" id="form-{{ campaign.id }}">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-success">
+                        <button type="button" class="btn btn-success" id="btn-{{ campaign.id }}" onclick="startCampaign({{ campaign.id }}, '{% url 'campaigns:campaign_trigger' campaign.id %}', '{% url 'campaigns:campaign_progress' campaign.id %}')">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                             Send Now
                         </button>
                     </form>
+                    {% endif %}
+                    <div id="progress-container-{{ campaign.id }}" style="display: {% if campaign.status == 'processing' %}block{% else %}none{% endif %}; width: 100%;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 4px; color: var(--text-secondary);">
+                            <span id="progress-text-{{ campaign.id }}">Processing...</span>
+                            <span id="progress-percent-{{ campaign.id }}">0%</span>
+                        </div>
+                        <div style="width: 100%; background: #e2e8f0; border-radius: 4px; height: 8px; overflow: hidden;">
+                            <div id="progress-bar-{{ campaign.id }}" style="width: 0%; background: #10b981; height: 100%; transition: width 0.3s ease;"></div>
+                        </div>
+                    </div>
+                    {% if campaign.status == 'processing' %}
+                    <script>
+                        // Auto-start listening if page loaded with 'processing' status
+                        document.addEventListener("DOMContentLoaded", function() {
+                            listenToProgress({{ campaign.id }}, '{% url 'campaigns:campaign_progress' campaign.id %}');
+                        });
+                    </script>
                     {% endif %}
                 </td>
             </tr>
@@ -64,4 +81,95 @@
         </tbody>
     </table>
 </div>
+
+<script>
+function startCampaign(campaignId, triggerUrl, progressUrl) {
+    const form = document.getElementById('form-' + campaignId);
+    const btn = document.getElementById('btn-' + campaignId);
+    const container = document.getElementById('progress-container-' + campaignId);
+    
+    btn.disabled = true;
+    btn.innerText = "Starting...";
+    
+    const formData = new FormData(form);
+    
+    fetch(triggerUrl, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'Accept': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'started') {
+            form.style.display = 'none';
+            container.style.display = 'block';
+            
+            // Also update the status badge
+            const row = form.closest('tr');
+            const statusCell = row.cells[2];
+            statusCell.innerHTML = '<span class="badge badge-processing">Processing</span>';
+            
+            listenToProgress(campaignId, progressUrl);
+        } else if (data.error) {
+            alert("Error: " + data.error);
+            btn.disabled = false;
+            btn.innerText = "Send Now";
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert("Failed to start campaign.");
+        btn.disabled = false;
+        btn.innerText = "Send Now";
+    });
+}
+
+function listenToProgress(campaignId, progressUrl) {
+    const textSpan = document.getElementById('progress-text-' + campaignId);
+    const percentSpan = document.getElementById('progress-percent-' + campaignId);
+    const bar = document.getElementById('progress-bar-' + campaignId);
+    
+    const evtSource = new EventSource(progressUrl);
+    
+    evtSource.onmessage = function(e) {
+        const data = JSON.parse(e.data);
+        if (data.status === 'pending') {
+            textSpan.innerText = "Initializing...";
+            return;
+        }
+        
+        const total = data.total || 1;
+        const processed = data.sent + data.failed;
+        const percent = Math.round((processed / total) * 100);
+        
+        bar.style.width = percent + '%';
+        percentSpan.innerText = percent + '%';
+        textSpan.innerText = `Sent: ${data.sent} | Failed: ${data.failed}`;
+        
+        if (data.status === 'completed') {
+            evtSource.close();
+            bar.style.background = '#3b82f6'; // Change to blue when done
+            textSpan.innerText = "Completed!";
+            
+            // Update badge to Sent
+            const container = document.getElementById('progress-container-' + campaignId);
+            const row = container.closest('tr');
+            const statusCell = row.cells[2];
+            statusCell.innerHTML = '<span class="badge badge-sent">Sent</span>';
+            
+            setTimeout(() => {
+                window.location.reload();
+            }, 1500);
+        }
+    };
+    
+    evtSource.onerror = function(e) {
+        console.error("EventSource error:", e);
+        evtSource.close();
+    };
+}
+</script>
 {% endblock %}
